@@ -139,9 +139,11 @@ public class NeuronLayerManager {
 		for (int i = 1; i < neuronLayerContainer.size(); i++) {
 			for (int j = 0; j < neuronLayerContainer.get(i).size(); j++) {
 				Neuron actneuron = neuronLayerContainer.get(i).get(j);
+				ArrayList<Double> derivatives = new ArrayList<>();
 				for (int k = 0; k < actneuron.inweights.size(); k++) {
-					actneuron.derweights.add(actneuron.delta*neuronLayerContainer.get(i-1).get(k).output);
+					derivatives.add(actneuron.delta*neuronLayerContainer.get(i-1).get(k).output);
 				}
+				actneuron.derweights = derivatives;
 				actneuron.dbias = actneuron.delta;
 				ArrayList<Double> weightsAndBias = new ArrayList<Double>(actneuron.derweights);
 				weightsAndBias.add(actneuron.dbias);

@@ -26,8 +26,6 @@ public class NNSolutionFour {
 		for (int iepoch = 0; iepoch < epoch; iepoch++) {
 			//teaching
 			
-			
-			
 			for (int i = 0; i < nLearningInputs; i++) {
 				ArrayList<Double> InandOut = sc.scan();
 				ArrayList<Double> inputs = new ArrayList<Double>(InandOut.subList(0, (int)(architecture.get(0)-0)));
@@ -38,10 +36,12 @@ public class NNSolutionFour {
 					for (int j = 0; j < outputs.size(); j++) {
 						epsilons.add(expectedoutputs.get(j)-outputs.get(j));
 					}
+					
+					System.out.println("Az "+(i+1)+". tanítóminta:");
 					nm.getDerivatives(epsilons);
 					nm.correctWeights(learningFactor);
 					
-					System.out.println(architecture);
+					System.out.println("A módosult hálózat: ");
 					nm.printAll();
 					System.out.println();
 
