@@ -130,7 +130,7 @@ public class NeuronLayerManager {
 				for (int k = 0; k < neuronLayerContainer.get(i+1).size(); k++) {
 					double deltanext = neuronLayerContainer.get(i+1).get(k).delta;
 					double weightnext = neuronLayerContainer.get(i+1).get(k).inweights.get(j);
-					deltasum += deltanext * weightnext;
+					deltasum += (deltanext * weightnext);
 				}
 				actneuron.delta = deltasum * ReLu.calculateDerivativeReLu(actneuron.sum);
 			}
@@ -167,12 +167,12 @@ public class NeuronLayerManager {
 					double oldweight = actualneuron.inweights.get(k);
 					double derivativeOfoldweight = actualneuron.derweights.get(k);
 					newInweights.add(oldweight + 2 * learningFactor * derivativeOfoldweight);
-					actualneuron.bias += (2 * learningFactor * actualneuron.dbias);
 				}
 				if (actualneuron.inweights.size()!=newInweights.size()){
 					System.out.println("gáz van!");
 				}
 				actualneuron.inweights = newInweights;
+				actualneuron.bias += (2 * learningFactor * actualneuron.dbias);
 			}
 		}
 	}
