@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class NNSolutionFour {
 
-	private static double calculateAverage(ArrayList<Double> list) {
+	static double calculateAverage(ArrayList<Double> list) {
 		Double sum = 0.0;
 		if(!list.isEmpty()) {
 			for (Double mark : list) {
