@@ -97,8 +97,8 @@ public class NNSolutionFour {
 			}
 			//átlagos hiba
 			System.out.println(calculateAverage(errorvectors));
-			System.out.println(arch);
-			nm.printAll();
 		}
+		System.out.println(arch);
+		nm.printAll();
 	}
 }
