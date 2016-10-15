@@ -36,13 +36,25 @@ public class NNSolutionFour {
 		double nInputs = sc.scan().get(0);
 		double nLearningInputs = Math.floor(nInputs*ratioOfLearningInputs);
 		double nValidationInputs = nInputs - nLearningInputs;
+		
+		ArrayList<ArrayList<Double>> teachinginput = new ArrayList<ArrayList<Double>>();
+		ArrayList<ArrayList<Double>> validationinput = new ArrayList<ArrayList<Double>>();
+		
+		for (int i = 0; i < nLearningInputs; i++) {
+			teachinginput.add(sc.scan());
+		}
+		
+		for (int i = 0; i < nValidationInputs; i++) {
+			validationinput.add(sc.scan());
+		}
 
+		
 		for (int iepoch = 0; iepoch < epoch; iepoch++) {
 			ArrayList<Double> errorvectors = new ArrayList<Double>();
 
 			//teaching
 			for (int i = 0; i < nLearningInputs; i++) {
-				ArrayList<Double> InandOut = sc.scan();
+				ArrayList<Double> InandOut = teachinginput.get(i);
 				ArrayList<Double> inputs = new ArrayList<Double>(InandOut.subList(0, (int)(architecture.get(0)-0)));
 				ArrayList<Double> expectedoutputs = new ArrayList<Double>( InandOut.subList((int)(architecture.get(0)-0), InandOut.size()));
 				try {
@@ -59,7 +71,7 @@ public class NNSolutionFour {
 			}
 			//validation
 			for (int i = 0; i < nValidationInputs; i++) {
-				ArrayList<Double> InandOut = sc.scan();
+				ArrayList<Double> InandOut = validationinput.get(i);
 				ArrayList<Double> inputs = new ArrayList<Double>(InandOut.subList(0, (int)(architecture.get(0)-0)));
 				ArrayList<Double> expectedoutputs = new ArrayList<Double>( InandOut.subList((int)(architecture.get(0)-0), InandOut.size()));
 
